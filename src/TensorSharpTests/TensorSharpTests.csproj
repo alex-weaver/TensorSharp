@@ -106,10 +106,10 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy $(ProjectDir)\..\CpuOps\bin\x64\Release\CpuOps.dll $(ProjectDir)\bin\x64\Release /d /y
-xcopy $(ProjectDir)\..\CpuOps\bin\x64\Debug\CpuOps.dll $(ProjectDir)\bin\x64\Debug /d /y
-xcopy $(SolutionDir)\..\lib\win_x64\*.dll $(ProjectDir)\bin\x64\Release /d /y
-xcopy $(SolutionDir)\..\lib\win_x64\*.dll $(ProjectDir)\bin\x64\Debug /d /y
+    <PreBuildEvent>xcopy $(ProjectDir)\..\CpuOps\bin\x64\Release\CpuOps.dll $(ProjectDir)\bin\x64\Release /d /y /I
+xcopy $(ProjectDir)\..\CpuOps\bin\x64\Debug\CpuOps.dll $(ProjectDir)\bin\x64\Debug /d /y /I
+xcopy $(SolutionDir)\..\lib\win_x64\*.dll $(ProjectDir)\bin\x64\Release /d /y /I
+xcopy $(SolutionDir)\..\lib\win_x64\*.dll $(ProjectDir)\bin\x64\Debug /d /y /I
 </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

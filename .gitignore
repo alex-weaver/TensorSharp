@@ -8,3 +8,22 @@
 *.csproj.user
 
 *.obj
+
+build/*
+
+src/BasicMnist/bin/*
+src/BasicMnist/obj/*
+
+src/CpuOps/bin/*
+src/CpuOps/x64/*
+
+src/TensorSharp.CUDA/bin/*
+src/TensorSharp.CUDA/obj/*
+
+src/TensorSharp/bin/*
+src/TensorSharp/obj/*
+
+src/TensorSharpTests/bin/*
+src/TensorSharpTests/obj/*
+
+src/packages/*

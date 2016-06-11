@@ -1,6 +1,29 @@
 
 $scriptDir = $PSScriptRoot
 
+nuget.exe restore ($scriptDir + "\..\src\TensorSharp.sln")
+
+
+Import-Module -Name ($scriptDir + "\Invoke-MsBuild.psm1")
+
+Invoke-MsBuild -Path ($scriptDir + "\..\src\TensorSharp.sln") -Params "/target:Clean;Build /property:Configuration=Release;Platform=x64" -ShowBuildOutputInNewWindow
+
+if($buildResult.BuildSucceeded -eq $true)
+{
+	Write-Output "Build succeeded"
+}
+else
+{
+	Write-Output "Build failed: "
+	Write-Output "Full command: "
+	Write-Output $buildResult.CommandUsedToBuild 
+	Write-Output "Message: "
+	Write-Output $buildResult.Message
+	
+	
+}
+
+
 $tsOutputDir = $scriptDir + "\..\build\win_x64\TensorSharp"
 md -Force $tsOutputDir
 Copy-Item -path ($scriptDir + "\..\src\TensorSharp\bin\x64\Release\*.dll") -destination $tsOutputDir -Force
