@@ -14,9 +14,10 @@ TensorSharp is an open source library providing efficient N-dimensional arrays f
  
 
 ## Building
- 1. Install Visual Studio 2015 Community Edition (or another edition of Visual Studio)
- 2. Run build_win_x64.bat in the root directory.
- 3. *(optional)* CUDA kernels are built on demand with NVRTC and cached as .ptx files in the executable directory. To precompile the kernels so that no compilation is needed at runtime, run *precompile_cuda.bat* in the root directory. This will create a folder build/cuda_cache which contains the precompiled kernels.
+ 1. Install Visual Studio 2015 Community Edition (or another edition of Visual Studio 2015)
+ 2. Install nuget.exe and make sure it exists on your PATH
+ 3. Run build_win_x64.bat in the root directory.
+ 4. *(optional)* CUDA kernels are built on demand with NVRTC and cached as .ptx files in the executable directory. To precompile the kernels so that no compilation is needed at runtime, run *precompile_cuda.bat* in the root directory. This will create a folder build/cuda_cache which contains the precompiled kernels.
 
 To run the unit tests, the architecture for the unit tests must be set to x64. To change the architecture setting, go to the Test -> Test Settings -> Default Processor Architecture menu; otherwise, the Test Explorer will not discover the tests.
 

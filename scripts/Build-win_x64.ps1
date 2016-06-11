@@ -6,7 +6,7 @@ nuget.exe restore ($scriptDir + "\..\src\TensorSharp.sln")
 
 Import-Module -Name ($scriptDir + "\Invoke-MsBuild.psm1")
 
-Invoke-MsBuild -Path ($scriptDir + "\..\src\TensorSharp.sln") -Params "/target:Clean;Build /property:Configuration=Release;Platform=x64" -ShowBuildOutputInNewWindow
+$buildResult = Invoke-MsBuild -Path ($scriptDir + "\..\src\TensorSharp.sln") -Params "/target:Clean;Build /property:Configuration=Release;Platform=x64" -ShowBuildOutputInNewWindow
 
 if($buildResult.BuildSucceeded -eq $true)
 {
