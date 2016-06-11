@@ -1,0 +1,10 @@
+
+*.sdf
+*.suo
+*.opendb
+*.vs
+*.vcxproj.user
+*.vcxproj.filters
+*.csproj.user
+
+*.obj
