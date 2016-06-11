@@ -24,6 +24,9 @@ To run the unit tests, the architecture for the unit tests must be set to x64. T
 ## MNIST Example
 The BasicMnist project contains a basic implementation of some neural network layers and SGD optimizer. It includes 3 different network architectures for classifying the MNIST digits data set. The configuration options for this sample are at the top of Program.cs
 
+Running this project required the MNIST data set to be placed *uncompressed* into C:\MNIST. The folder where the code will look for the data set is configurable from Program.cs. You can obtain the gzipped data files from http://yann.lecun.com/exdb/mnist/
+
+
 To use cuDNN with this project, you must obtain the cudnn 5 .dll from NVIDIA and place it in the output directory.
 
 The three implemented network architectures are:
