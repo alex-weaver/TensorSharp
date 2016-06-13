@@ -61,7 +61,8 @@ namespace TensorSharp.CUDA.KernelOps
                 dstReady.Record();
 
                 srcContext.SetCurrent();
-                DriverAPINativeMethods.Streams.cuStreamWaitEvent(CUstream.NullStream, dstReady.Event, 0);
+                var res = DriverAPINativeMethods.Streams.cuStreamWaitEvent(CUstream.NullStream, dstReady.Event, 0);
+                if (res != CUResult.Success) throw new CudaException(res);
                 dstReady.Dispose();
             }
             else
@@ -73,8 +74,9 @@ namespace TensorSharp.CUDA.KernelOps
 
             if (canMemcpy)
             {
-                DriverAPINativeMethods.AsynchronousMemcpy_v2.cuMemcpyAsync(
+                var res = DriverAPINativeMethods.AsynchronousMemcpy_v2.cuMemcpyAsync(
                     resultPtr, srcPtr, totalElements * src.ElementType.Size(), CUstream.NullStream);
+                if (res != CUResult.Success) throw new CudaException(res);
             }
             else
             {
@@ -121,8 +123,9 @@ namespace TensorSharp.CUDA.KernelOps
                 var resultContigPtr = ((CudaStorage)resultContig.Storage).DevicePtrAtElement(resultContig.StorageOffset);
                 var srcContigPtr = ((CudaStorage)srcContig.Storage).DevicePtrAtElement(srcContig.StorageOffset);
 
-                DriverAPINativeMethods.AsynchronousMemcpy_v2.cuMemcpyAsync(
+                var res = DriverAPINativeMethods.AsynchronousMemcpy_v2.cuMemcpyAsync(
                     resultContigPtr, srcContigPtr, totalElements * srcContig.ElementType.Size(), CUstream.NullStream);
+                if (res != CUResult.Success) throw new CudaException(res);
 
                 if (!isResultContig)
                 {
@@ -196,7 +199,8 @@ namespace TensorSharp.CUDA.KernelOps
 
                 // Use DriverAPINativeMethods directly here instead of CudaContext.CopyToHost, because CopyToHost only has an overload
                 // for specifying totalBytes as a uint, but we may exceed the range of a uint here.
-                DriverAPINativeMethods.SynchronousMemcpy_v2.cuMemcpyDtoH_v2(resultContigPtr, srcContigPtr, totalBytes);
+                var res = DriverAPINativeMethods.SynchronousMemcpy_v2.cuMemcpyDtoH_v2(resultContigPtr, srcContigPtr, totalBytes);
+                if (res != CUResult.Success) throw new CudaException(res);
 
                 if (result.Storage != resultContig.Storage)
                 {
