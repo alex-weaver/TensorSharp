@@ -3,7 +3,7 @@
 TensorSharp is an open source library providing efficient N-dimensional arrays for .NET. Currently, there are backends for running tensor computations on the CPU, and on CUDA GPU hardware. The library is designed to be efficient, easy to install/deploy, and simple to extend. The implementations of many of the core operators are based on the Torch7 project.
 
 ## Installation
- 1. Build the project following the instructions in the *Building* section below.
+ 1. Either build the project following the instructions in the *Building* section below, or download the prebuilt binaries from the [Releases](https://github.com/alex-weaver/TensorSharp/releases) page.
  2. To add TensorSharp CPU support to a project, add a reference to build/win_x64/TensorSharp/TensorSharp.dll. Copy all the remaining .dll files from build/win_x64/TensorSharp/ to the project's output directory.
  3. To add CUDA support, add a reference to all the .dll files in build/win_x64/TensorSharp.CUDA/. If you have precompiled the CUDA kernels, then copy the build/cuda_cache folder to the project's output directory.
  4. For cuDNN support, follow all previous steps, then obtain the cuDNN 5 .dll from NVIDIA's Accelerated Computing Developer Program, and place it in the project's output directory.
