@@ -14,10 +14,14 @@ TensorSharp is an open source library providing efficient N-dimensional arrays f
  
 
 ## Building
- 1. Install Visual Studio 2015 Community Edition (or another edition of Visual Studio 2015)
- 2. Install nuget.exe and make sure it exists on your PATH
- 3. Run build_win_x64.bat in the root directory.
- 4. *(optional)* CUDA kernels are built on demand with NVRTC and cached as .ptx files in the executable directory. To precompile the kernels so that no compilation is needed at runtime, run *precompile_cuda.bat* in the root directory. This will create a folder build/cuda_cache which contains the precompiled kernels.
+Prerequisites:
+ 1. Visual Studio 2015 Community Edition (or another edition of Visual Studio 2015) must be installed
+ 2. nuget.exe must exist on your PATH
+ 3. Powershell must be installed
+ 
+Building:
+ 1. Run build_win_x64.bat in the root directory.
+ 2. *(optional)* CUDA kernels are built on demand with NVRTC and cached as .ptx files in the executable directory. To precompile the kernels so that no compilation is needed at runtime, run *precompile_cuda.bat* in the root directory. This will create a folder build/cuda_cache which contains the precompiled kernels.
 
 To run the unit tests, the architecture for the unit tests must be set to x64. To change the architecture setting, go to the Test -> Test Settings -> Default Processor Architecture menu; otherwise, the Test Explorer will not discover the tests.
 
@@ -68,7 +72,9 @@ tensor.Dispose();
 ```
 Running the same operation on a CUDA GPU only requires constructing a different allocator:
 ```
-var cudaContext = new TSCudaContext(Console.Write);
+var cudaContext = new TSCudaContext();
+cudaContext.Precompile();
+cudaContext.CleanUnusedPTX();
 var allocator = new CudaAllocator(cudaContext, 0);
 
 var tensor = Tensor.FromArray(allocator, new float[] { 1, 2, 3, 4 });
@@ -76,4 +82,5 @@ Ops.Add(tensor, tensor, 2);
 Console.WriteLine(tensor.Format());
 tensor.Dispose();
 ```
-The argument to TSCudaContext is a function to print CUDA kernel compilation progress.
+The calls to Precompile and CleanUnusedPTX ensure that all required CUDA kernels have been compiled so there will not be any additional latency when invoking ops.
+
