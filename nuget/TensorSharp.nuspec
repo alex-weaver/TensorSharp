@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <id>TensorSharp.CpuOnly</id>
+
+        <version>0.2.0</version>
+
+        <authors>Alex Weaver</authors>
+
+        <projectUrl>https://github.com/alex-weaver/TensorSharp</projectUrl>
+
+        <tags>tensor,ndarray</tags>
+
+        <description>Tensors for C#.</description>
+    </metadata>
+</package>
