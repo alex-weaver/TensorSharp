@@ -44,9 +44,9 @@ if($Configuration -eq "ReleaseCpuOnly")
 	{
 		$nugetDir = $scriptDir + "\..\nuget\"
 	
-		New-Item ($nugetDir + "lib\net45") -Force
-		New-Item ($nugetDir + "build\x64") -Force
-		New-Item ($nugetDir + "build\x64") -Force
+		New-Item ($nugetDir + "lib\net45") -Force -Type directory
+		New-Item ($nugetDir + "build\x64") -Force -Type directory
+		New-Item ($nugetDir + "build\x64") -Force -Type directory
 	
 		Copy-Item -path ($scriptDir + "\..\src\TensorSharp\bin\x64\" + $Configuration + "\*.dll") -destination ($nugetDir + "lib\net45") -Force
 		Copy-Item -path ($scriptDir + "\..\src\CpuOps\bin\x64\" + $Configuration + "\*.dll") -destination ($nugetDir + "build\x64") -Force
