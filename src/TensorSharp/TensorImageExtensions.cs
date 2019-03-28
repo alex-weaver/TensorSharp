@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
+//using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 
@@ -22,7 +22,7 @@ namespace TensorSharp
         /// </summary>
         /// <param name="tensor"></param>
         /// <returns></returns>
-        public static Bitmap ToBitmap(this Tensor tensor)
+        /*public static Bitmap ToBitmap(this Tensor tensor)
         {
             if (tensor.DimensionCount != 2 && tensor.DimensionCount != 3)
                 throw new InvalidOperationException("tensor must have 2 or 3 dimensions");
@@ -78,6 +78,6 @@ namespace TensorSharp
             {
                 src.Dispose();
             }
-        }
+        }*/
     }
 }

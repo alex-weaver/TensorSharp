@@ -16,8 +16,8 @@ namespace TensorSharp.Core
 
         private static class NativeMethods64
         {
-            [DllImport("kernel32.dll")]
-            public static extern void CopyMemory(IntPtr destination, IntPtr source, ulong length);
+            [DllImport("kernel32")]
+            public static extern void RtlCopyMemory(IntPtr destination, IntPtr source, ulong length);
         }
 
         public static void Copy(IntPtr destination, IntPtr source, ulong length)
@@ -33,7 +33,7 @@ namespace TensorSharp.Core
             }
             else
             {
-                NativeMethods64.CopyMemory(destination, source, (ulong)length);
+                NativeMethods64.RtlCopyMemory(destination, source, (ulong)length);
             }
 
         }
